@@ -10,3 +10,9 @@ token = {"token" : '771da4d993f8dc161eca9b1a951bf50e'}
 req = requests.post(retrieveDictionary, json=token)
 # this is the dictionary that is being returned to us
 print req.text, "\n"
+data = json.loads(req.text)
+value = data['needle']
+array = data['haystack']
+
+index = array.index(value)
+print index
