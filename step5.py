@@ -30,15 +30,13 @@ date2 = iso8601.parse_date(date)
 addSeconds = date2+relativedelta(seconds = interval)
 print addSeconds
 # Now we have to convert the datestamp back to iso 8601 format
-print unicode(dt.datetime.isoformat(addSeconds)[:-6] + 'Z')
+iso = unicode(dt.datetime.isoformat(addSeconds)[:-6] + 'Z')
 
-'''
 # Last step is to send the new datestamp to this url
 sendNewList = 'http://challenge.code2040.org/api/dating/validate'
 # We have to create a new dictionary with token and array
-result = {"token" : '771da4d993f8dc161eca9b1a951bf50e', "datestamp" : addSeconds}
+result = {"token" : '771da4d993f8dc161eca9b1a951bf50e', "datestamp" : iso}
 # Send a post request to upload our dictionary
 reqSend = requests.post(sendNewList, json = result)
 # The result will confirm that step 3 has been completed
 print reqSend.text
-'''
