@@ -12,9 +12,12 @@ req = requests.post(retrieveDictionary, json=token)
 print req.text, "\n"
 # We have to convert the dictionary to json
 data = json.loads(req.text)
-# assign the key to value
+# assign the prefix to value
 value = data['prefix']
 # assign the array to array
 array = data['array']
+# This line iterates through the array to delete the words that contain the prefix
+newlist = [x for x in array if not x.startswith(value)]
 print value
-print  array
+print newlist
+# data = json.loads(req.text)
