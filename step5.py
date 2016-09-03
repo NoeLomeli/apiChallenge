@@ -1,7 +1,9 @@
 import requests
 import json
 import dateutil.parser
-import dateutil.parser as dp
+import datetime
+import iso8601
+from datetime import *; from dateutil.relativedelta import *
 
 # this is the endpoint that will give us the dictionary
 retrieveDictionary = 'http://challenge.code2040.org/api/dating'
@@ -16,7 +18,12 @@ print req.text, "\n"
 data = json.loads(req.text)
 # assign the datestamp to date
 date = data['datestamp']
+interval = data['interval']
 print date
+print interval
 # We have to format the datestamp in order to be able to add the seconds interval
-date2 = dateutil.parser.parse(date)
+date2 = iso8601.parse_date(date)
+addSeconds = date2+relativedelta(seconds = interval)
+
 print date2
+print addSeconds
